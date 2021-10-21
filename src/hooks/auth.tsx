@@ -94,7 +94,7 @@ function AuthProvider({children} : AuthProviderProps){
     }
 
     loadUserStorageData();
-  })
+  },[])
 
 
   return (
