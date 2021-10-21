@@ -9,15 +9,22 @@ import {
 import { styles } from './styles';
 
 import LogoSVG from '../../assets/logo.svg';
+import { UserPhoto } from '../UserPhoto';
 
 export function Header(){
   return (
     <View style={styles.container}>
       <LogoSVG />
 
-      <TouchableOpacity>
-        <Text style={styles.logoutText}>Sair</Text>
-      </TouchableOpacity>
+      <View style={styles.logoutButton}>
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Sair</Text>
+        </TouchableOpacity>
+
+        <UserPhoto
+        imageUri=''
+        />
+      </View>
     </View>
   );
 }
