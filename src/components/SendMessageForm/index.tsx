@@ -34,7 +34,7 @@ export function SendMessageForm(){
     setMessage('');
     Keyboard.dismiss();
     setSendingMessage(false);
-    Alert.alert('Mensagem enviada com sucesso.');
+    //Alert.alert('Mensagem enviada com sucesso.');
   }
 
   return (
