@@ -14,7 +14,7 @@ export function SendMessageForm(){
   const [message, setMessage] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
 
-  //CORREÇAO PARA IOS
+  //CORREÇAO PARA IOS 
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 0 : 0;
 
   return (
