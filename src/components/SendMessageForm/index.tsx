@@ -1,21 +1,41 @@
 import React, { useState } from 'react';
-import {KeyboardAvoidingView, Platform} from 'react-native';
+import {Alert, Keyboard, KeyboardAvoidingView, Platform} from 'react-native';
 
 import {
   TextInput,
   View
 } from 'react-native';
+import { api } from '../../services/api';
 import { COLORS } from '../../theme';
 import { Button } from '../Button';
 
 import { styles } from './styles';
 
 export function SendMessageForm(){
-  const [message, setMessage] = useState('');
-  const [sendingMessage, setSendingMessage] = useState(false);
 
   //CORREÇAO PARA IOS 
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 0 : 0;
+
+  const [message, setMessage] = useState('');
+  const [sendingMessage, setSendingMessage] = useState(false);
+
+  async function handleMessageSubmit(){
+    const messageFormatted = message.trim();
+
+    if(messageFormatted.length == 0){
+      Alert.alert('Escreva a mensagem para enviar.');
+      return;
+    }
+
+    setSendingMessage(true);
+
+    api.post('/messages', {message: messageFormatted});
+
+    setMessage('');
+    Keyboard.dismiss();
+    setSendingMessage(false);
+    Alert.alert('Mensagem enviada com sucesso.');
+  }
 
   return (
     <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset}>
@@ -38,6 +58,8 @@ export function SendMessageForm(){
           title="ENVIAR MENSAGEM"
           backgroundColor={COLORS.PINK}
           color={COLORS.WHITE}
+          isLoading={sendingMessage}
+          onPress={handleMessageSubmit}
           />
       </View>
       </KeyboardAvoidingView>
