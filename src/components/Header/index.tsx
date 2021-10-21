@@ -22,7 +22,7 @@ export function Header(){
         </TouchableOpacity>
 
         <UserPhoto
-        imageUri=''
+        imageUri='https://github.com/oseasmoreto.png'
         />
       </View>
     </View>
